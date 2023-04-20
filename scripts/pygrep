@@ -1,0 +1,7 @@
+#!/bin/sh
+
+args="$@"
+files='*.py'
+
+find . -name "$files" |
+xargs grep -n "$args"

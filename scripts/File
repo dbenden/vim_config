@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Run vim on a line that was printed by a python stacktrace
+# Usage: copy and paste line (CTRL-INS SHIFT-INS)
+
+# Example:
+#  File "/home/rolf/.virtualenvs/billie8/lib/python3.6/site-packages/ocean/datasources/exchange/writer.py", line 35, in write
+
+file="$(echo "$1" | sed 's/,$//')"
+line="$(echo "$3" | sed 's/,$//')"
+
+exec vim "+$line" "$file"

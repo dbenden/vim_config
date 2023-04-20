@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Run vim on all files $2 [$3...] containing pattern '$1"
+
+patt="$1"
+shift
+files=$(grep -l "$patt" "$@")
+
+exec vim "+/$patt/" ${files}

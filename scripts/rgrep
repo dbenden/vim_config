@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# search in '$2' (default *.py or *.html) files in or below ./ recursively
+# for a regular expression '$1' using grep
+# allowed options: -i OR -E
+
+# bonus: run 'strings' on non-text files
+
+TMPF=~/.tmp-flist$$.txt
+USAGE="Usage: $0 [-Ei] 'RegularExpression' ['FilePattern']; default '*.py' or '*.htm*'"
+
+case "$1" in
+    -i|-E|-iE|-Ei)
+	    options="$1"
+	    shift;;
+    ""|-*)
+	    echo "$USAGE" >&2
+	    exit 2;;
+esac
+
+regexp="$1"
+shift
+
+case "$1" in
+"")
+	filepatt='*.py or *.htm*'
+	find . -type f '(' -name '*.py' -o -name '*.htm*' ')' -print0 |
+		xargs -0 grep ${options} -n "$regexp"
+	;;
+*)
+	filepatt="$1"
+	find . -type f -name "$1" -print0 |
+		xargs -0 file | tee "$TMPF" |
+		sed -n '/ text/s/: .*//p' |
+		tr '\n' '\0' |
+		xargs -0 grep ${options} -n "$regexp"
+
+	echo "And the non-text files..."
+
+	sed -n '/ text/!s/: .*//p' "$TMPF" |
+	tr '\n' '\0' |
+	xargs -0 strings --all -n 7 -f --radix=x |
+	grep ${options} "$regexp" |
+	cat -v
+	;;
+esac
+
+rm -f "$TMPF"

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -x
+
+for ff in "$@"
+do
+	tr -d '\r' <"$ff" >"tmp.$ff"
+	mv "tmp.$ff" "$ff"
+done

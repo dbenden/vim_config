@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Open vim in '$2' (default *.py or *.html) files in or below ./ recursively
+# containing a regular expression '$1', put the regexp in vim search string
+
+USAGE="Usage: $0 [-Ei] 'RegularExpression' ['FilePattern']; default '*.py' or '*.htm*'"
+
+case "$1" in
+    -i|-Ei|-iE)
+	    options="$1"
+	    ignorecase="set ic|"
+	    shift;;
+    -E)
+	    options="$1"
+	    shift;;
+    ""|-*)
+	    echo "$USAGE" >&2
+	    exit 2;;
+esac
+
+regexp="$1"
+shift
+
+case "$1" in
+"")
+	filepatt='*.py or *.htm*'
+	files=$(find . -type f '(' -name '*.py' -o -name '*.htm*' ')' -print0 |
+		xargs -0 grep ${options} -l "$regexp")
+	;;
+*)
+	filepatt="$1"
+	files=$(find . -type f -name "$filepatt" -print0 |
+		xargs -0 grep ${options} -l "$regexp")
+	;;
+esac
+
+case "$files" in
+"")
+	echo "No '$filepatt' files match ${options} regexp '$regexp'" >&2
+	exit 1;;
+*)
+	regexp=$(echo "$regexp" | sed 's:/:[/]:g')
+	exec nvim "+${ignorecase}/$regexp/" ${files}
+	;;
+esac

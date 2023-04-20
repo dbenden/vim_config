@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Run vim +LineNumber on a file coming from grep -n output
+# Example:
+# ./src/pyOcean/ocean/datasources/exchange/writer.py:38:
+
+file=$(echo "$1" | sed 's/:.*//')
+line=$(echo "$1" | sed 's/[^:]*://;s/://')
+
+set -x
+exec vim "+${line:-1}" "$file"
