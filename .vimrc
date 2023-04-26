@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 
     " Completion / linters / formatters
     Plug 'davidhalter/jedi-vim'
+    Plug 'neomake/neomake'
     
     " Debugger
     Plug 'puremourning/vimspector'
@@ -17,7 +18,10 @@ call plug#begin('~/.vim/plugged')
     " Search
     Plug 'ctrlpvim/ctrlp.vim'
     " " Fonts
-"    Plug 'ryanoasis/nerd-fonts'
+    "Plug 'ryanoasis/nerd-fonts'
+    " Licenses
+    Plug 'antoyo/vim-licenses'
+
 call plug#end()
 
 " Options
@@ -124,3 +128,14 @@ nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
 xmap <Leader>di <Plug>VimspectorBalloonEval
 let g:vimspector_enable_mappings='HUMAN'
+
+
+"NEOMAKE
+call neomake#configure#automake('nrw', 50)
+let g:neomake_python_enabled_makers = ['pylint', 'flake8']
+
+"vim-license
+
+let g:licenses_copyright_holders_name = "Benden, Daniel <dbenden@danielbenden.nl>"
+let g:licenses_author_name = "Benden, Daniel <dbenden@danielbenden.nl>"
+
