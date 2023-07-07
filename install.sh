@@ -7,4 +7,4 @@ cp .vimrc ~/
 cd scripts
 make install
 cd -
-nvim -c 'PlugInstall' -c 'qall!'
+nvim -c 'PlugClean' -c 'PlugInstall'  -c ':PlugUpgrade' -c 'PlugUpdate' -c 'qall!'
