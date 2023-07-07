@@ -12,10 +12,17 @@ call plug#begin('~/.vim/plugged')
     " Completion / linters / formatters
     Plug 'davidhalter/jedi-vim'
     Plug 'neomake/neomake'
+    Plug 'ervandew/supertab'
     
     " Debugger
     Plug 'puremourning/vimspector'
     " Git
+    Plug 'tpope/vim-fugitive'
+
+    " database
+    Plug 'tpope/vim-dadbod'
+    Plug 'kristijanhusak/vim-dadbod-ui'
+
     " Search
     Plug 'ctrlpvim/ctrlp.vim'
     " " Fonts
@@ -130,8 +137,11 @@ nmap <Leader>di <Plug>VimspectorBalloonEval
 xmap <Leader>di <Plug>VimspectorBalloonEval
 let g:vimspector_enable_mappings='HUMAN'
 
+" jedi-vim
 
+let g:jedi#show_call_signatures = "2"
 "NEOMAKE
+"
 call neomake#configure#automake('nrw', 50)
 let g:neomake_python_enabled_makers = ['pylint', 'flake8']
 
@@ -139,6 +149,4 @@ let g:neomake_python_enabled_makers = ['pylint', 'flake8']
 
 let g:licenses_copyright_holders_name = "Benden, Daniel <dbenden@danielbenden.nl>"
 let g:licenses_author_name = "Benden, Daniel <dbenden@danielbenden.nl>"
-
-
 colors deus
