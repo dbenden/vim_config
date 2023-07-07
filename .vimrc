@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-tree/nvim-web-devicons'
     Plug 'romgrk/barbar.nvim'   
     Plug 'vim-airline/vim-airline'
+    Plug 'rafi/awesome-vim-colorschemes'
         
     " File management
     Plug 'preservim/nerdtree'
@@ -139,3 +140,5 @@ let g:neomake_python_enabled_makers = ['pylint', 'flake8']
 let g:licenses_copyright_holders_name = "Benden, Daniel <dbenden@danielbenden.nl>"
 let g:licenses_author_name = "Benden, Daniel <dbenden@danielbenden.nl>"
 
+
+colors deus
