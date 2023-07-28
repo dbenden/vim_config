@@ -31,6 +31,11 @@ call plug#begin('~/.vim/plugged')
     " Licenses
     Plug 'antoyo/vim-licenses'
 
+    " AI
+    "Plug 'MunifTanjim/nui.nvim'
+    "Plug 'Bryley/neoai.nvim'
+    Plug 'aduros/ai.vim'
+
 call plug#end()
 
 " Options
@@ -44,7 +49,7 @@ set completeopt=noinsert,menuone,noselect
 " set cursorline
 " set hidden
 " set inccommand=split
-"set mouse=a
+" set mouse=a
 set number
 " set relativenumber
 " set splitbelow splitright
