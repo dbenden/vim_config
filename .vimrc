@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'davidhalter/jedi-vim'
     Plug 'neomake/neomake'
     Plug 'ervandew/supertab'
+    Plug 'peterhoeg/vim-qml'
     
     " Debugger
     Plug 'puremourning/vimspector'
@@ -43,7 +44,7 @@ set completeopt=noinsert,menuone,noselect
 " set cursorline
 " set hidden
 " set inccommand=split
-set mouse=a
+"set mouse=a
 set number
 " set relativenumber
 " set splitbelow splitright
